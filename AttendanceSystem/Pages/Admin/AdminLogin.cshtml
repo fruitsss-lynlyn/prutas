@@ -4,24 +4,110 @@
     ViewData["Title"] = "Admin Login";
 }
 
-<h2 style="text-align:center; color:navy;">Admin Login</h2>
-
-<form method="post" style="max-width:400px; margin:auto; margin-top:40px;">
-    <div class="form-group mb-3">
-        <label>Username</label>
-        <input asp-for="Input.Username" class="form-control" />
-    </div>
-    <div class="form-group mb-3">
-        <label>Password</label>
-        <input asp-for="Input.Password" type="password" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-dark w-100">Login</button>
-
-    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-    {
-        <div class="text-danger mt-3">@Model.ErrorMessage</div>
+<style>
+    body {
+        background-color: lightslategray; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: black; 
     }
-</form>
 
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
+    .login-box {
+        background: white; 
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        width: 350px;
+        text-align: center;
+        color: black; 
+    }
+
+        .login-box h2 {
+            color: black; 
+            margin-bottom: 20px;
+        }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            font-weight: 600;
+            color: black; 
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: border-color 0.3s ease;
+        color: black; 
+    }
+
+        .form-control:focus {
+            border-color: gray;
+            outline: none;
+            box-shadow: 0 0 5px rgba(79, 70, 229, 0.5);
+        }
+
+    .btn-login {
+        background-color:gray;
+        color: ghostwhite;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn-login:hover {
+            background-color: darkslategray;
+            transform: translateY(-3px);
+        }
+
+    .text-danger {
+        margin-top: 10px;
+        color: red;
+        font-weight: 500;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-box">
+        <h2>Admin Login</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <label>Username</label>
+                <input asp-for="Input.Username" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input asp-for="Input.Password" type="password" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="text-danger">@Model.ErrorMessage</div>
+            }
+        </form>
+    </div>
+</div>

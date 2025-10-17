@@ -4,22 +4,94 @@
     ViewData["Title"] = "Visitor Form";
 }
 
-<h2 class="text-center mb-4">Visitor Information Form</h2>
+<style>
+    body {
+        background: linear-gradient(to bottom right, #dfffa7, #81c784); 
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-<form method="post" class="border rounded p-4 shadow-sm mx-auto" style="max-width: 500px;">
-    <div class="form-group mb-3">
-        <label asp-for="Visitor.FullName" class="form-label">Full Name</label>
+    h2 {
+        color: #1b5e20;
+        font-weight: 600;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .visitor-form {
+        background-color: #ffffff;
+        max-width: 480px;
+        margin: 50px auto;
+        padding: 35px 30px;
+        border-radius: 15px;
+        border: 2px solid #cddc39; 
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        text-align: left;
+    }
+
+    label {
+        font-weight: 500;
+        color: #2e7d32;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-control, .form-select, textarea {
+        border-radius: 10px;
+        border: 1px solid #c5e1a5;
+        padding: 10px;
+        width: 100%;
+        transition: all 0.3s;
+    }
+
+        .form-control:focus, .form-select:focus, textarea:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 6px rgba(46, 125, 50, 0.4);
+            outline: none;
+        }
+
+    .btn-primary {
+        background-color: #2e7d32;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #1b5e20;
+        }
+
+    .text-danger {
+        color: #d32f2f;
+        font-weight: 500;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+</style>
+
+<h2>Visitor Information Form</h2>
+
+<form method="post" class="visitor-form">
+    <div class="form-group">
+        <label asp-for="Visitor.FullName">Full Name</label>
         <input asp-for="Visitor.FullName" class="form-control" placeholder="Enter your full name" />
         <span asp-validation-for="Visitor.FullName" class="text-danger"></span>
     </div>
 
-    <div class="form-group mb-3">
-        <label asp-for="Visitor.VisitDate" class="form-label">Date</label>
+    <div class="form-group">
+        <label asp-for="Visitor.VisitDate">Date</label>
         <input asp-for="Visitor.VisitDate" class="form-control" type="date" readonly />
     </div>
 
-    <div class="form-group mb-3">
-        <label asp-for="Visitor.Office" class="form-label">Office to Visit</label>
+    <div class="form-group">
+        <label asp-for="Visitor.Office">Office to Visit</label>
         <select asp-for="Visitor.Office" class="form-select">
             <option value="">-- Select Office --</option>
             <option value="Registrar's Office">Registrar's Office</option>
@@ -29,13 +101,13 @@
         <span asp-validation-for="Visitor.Office" class="text-danger"></span>
     </div>
 
-    <div class="form-group mb-3">
-        <label asp-for="Visitor.Purpose" class="form-label">Purpose</label>
+    <div class="form-group">
+        <label asp-for="Visitor.Purpose">Purpose</label>
         <textarea asp-for="Visitor.Purpose" class="form-control" rows="3" placeholder="Enter your purpose of visit"></textarea>
         <span asp-validation-for="Visitor.Purpose" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary w-100">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 @section Scripts {
