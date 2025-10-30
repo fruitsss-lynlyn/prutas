@@ -4,19 +4,15 @@
     ViewData["Title"] = "Attendance System";
 }
 
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-    
     body {
         margin: 0;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(rgba(0, 100, 0, 0.6), rgba(144, 238, 144, 0.6)),
-        url('/image/cdm.jpg') no-repeat center center fixed;
+        background: linear-gradient(rgba(0, 100, 0, 0.6), rgba(144, 238, 144, 0.6)), url('/image/cdm.jpg') no-repeat center center fixed;
         background-size: cover;
     }
-
 
     .logo {
         position: absolute;
@@ -24,45 +20,59 @@
         left: 30px;
     }
 
+    /* Center container */
     .overlay {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 100vh;
-        padding: 60px;
-    }
-
-    .left-side {
-        flex: 1;
-        text-align: left;
-        color: #000;
-        padding-left: 80px;
-    }
-
-    .right-side {
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        color: white;
+        padding: 20px;
     }
 
-    .top-row {
+    h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 45px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    h3 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 22px;
+        color: white;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Row for the role cards */
+    .role-row {
         display: flex;
         justify-content: center;
+        align-items: stretch;
         gap: 40px;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 900px;
     }
 
     .role-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         border: 1px solid #ccc;
         border-radius: 12px;
         padding: 30px;
-        width: 230px;
+        width: 250px;
         text-align: center;
-        background-color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(255, 255, 255, 0.9);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
+        min-height: 150px;
     }
 
         .role-card:hover {
@@ -74,31 +84,62 @@
             transform: scale(0.95);
         }
 
-   
-    h1 {
+    h2 {
         font-family: 'Poppins', sans-serif;
-        font-size: 45px;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 10px;
-        text-align: left;
-        margin-left: 0;
-        padding-left: 0;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
-    }
-
-
-    h3 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 20px;
         color: black;
-        margin-top: 0;
+        margin-bottom: 10px;
     }
 
     p {
         font-family: 'Poppins', sans-serif;
-        font-size: 15px;
         color: #333;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        border: none;
+        padding: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-dark {
+        background-color: #343a40;
+    }
+
+        .btn-dark:hover {
+            background-color: #212529;
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+    }
+
+        .btn-success:hover {
+            background-color: #1e7e34;
+        }
+
+    /* Responsive layout */
+    @@media (max-width: 768px) {
+        .role-row {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+
     }
 </style>
 
@@ -107,33 +148,34 @@
 </div>
 
 <div class="overlay">
-    <div class="left-side">
-        <h1>Welcome to Attendance System</h1>
-        <h3>Proceed as?</h3>
-    </div>
+    <h1>Welcome to Attendance System</h1>
+    <h3>Proceed as?</h3>
 
-    <div class="right-side">
-        <div class="top-row">
-
-            <!-- Admin -->
-            <div class="role-card">
+    <div class="role-row">
+        <!-- Admin -->
+        <div class="role-card">
+            <div>
                 <h2>Admin</h2>
                 <p>Administrator login</p>
-                <a asp-page="/Admin/AdminLogin" class="btn btn-dark" style="width:100%;">Proceed as Admin</a>
             </div>
-
-            <!-- Student -->
-            <div class="role-card">
-                <h2>Student</h2>
-                <p>Login or register as student</p>
-                <a asp-page="/Students/StudentLogin" class="btn btn-primary" style="width:100%;">Proceed as Student</a>
-            </div>
+            <a asp-page="/Admin/AdminLogin" class="btn btn-dark" style="width:100%;">Proceed as Admin</a>
         </div>
 
-        <!-- Visitor below -->
+        <!-- Student -->
         <div class="role-card">
-            <h2>Visitor</h2>
-            <p>Log your visit</p>
+            <div>
+                <h2>Student</h2>
+                <p>Login or register as student</p>
+            </div>
+            <a asp-page="/Students/StudentLogin" class="btn btn-primary" style="width:100%;">Proceed as Student</a>
+        </div>
+
+        <!-- Visitor -->
+        <div class="role-card">
+            <div>
+                <h2>Visitor</h2>
+                <p>Log your visit</p>
+            </div>
             <a asp-page="/Visitors/AddVisitor" class="btn btn-success" style="width:100%;">Proceed as Visitor</a>
         </div>
     </div>
