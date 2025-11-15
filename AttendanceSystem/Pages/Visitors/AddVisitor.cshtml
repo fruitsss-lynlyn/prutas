@@ -4,62 +4,124 @@
     ViewData["Title"] = "Visitor Form";
 }
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
     body {
-        background: linear-gradient(to bottom right, #dfffa7, #81c784); 
-        font-family: 'Poppins', sans-serif;
         margin: 0;
-        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(rgba(0, 100, 0, 0.6), rgba(144, 238, 144, 0.6)), url('/image/cdm.jpg') no-repeat center center fixed;
+        background-size: cover;
+        min-height: 100vh;
     }
 
-    h2 {
-        color: #1b5e20;
-        font-weight: 600;
-        margin-bottom: 25px;
+    /* Center Wrapper */
+    .visitor-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+    }
+
+    /* Smaller Container */
+    .visitor-container {
+        display: flex;
+        width: 600px; /* reduced from 720px */
+        height: 380px; /* reduced from 450px */
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 20px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+    }
+
+    /* Left Panel */
+    .visitor-left {
+        width: 35%;
+        background: linear-gradient(135deg, #2e7d32, #66bb6a);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         text-align: center;
+        padding: 20px;
+        border-top-right-radius: 80px;
+        border-bottom-right-radius: 80px;
     }
 
-    .visitor-form {
-        background-color: #ffffff;
-        max-width: 480px;
-        margin: 50px auto;
-        padding: 35px 30px;
-        border-radius: 15px;
-        border: 2px solid #cddc39; 
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        text-align: left;
+        .visitor-left img {
+            width: 65px; /* smaller logo */
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .visitor-left h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .visitor-left p {
+            font-size: 12px;
+            color: #e8f5e9;
+        }
+
+    /* Right Form Panel */
+    .visitor-right {
+        flex: 1;
+        padding: 25px 30px; /* reduced padding */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+        .visitor-right h3 {
+            color: #1b5e20;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 18px; /* smaller heading */
+        }
+
+    .form-group {
+        margin-bottom: 10px;
     }
 
     label {
         font-weight: 500;
         color: #2e7d32;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
         display: block;
+        font-size: 13px;
     }
 
     .form-control, .form-select, textarea {
-        border-radius: 10px;
+        border-radius: 6px;
         border: 1px solid #c5e1a5;
-        padding: 10px;
+        padding: 6px 8px;
         width: 100%;
         transition: all 0.3s;
+        font-size: 13px;
     }
 
         .form-control:focus, .form-select:focus, textarea:focus {
             border-color: #2e7d32;
-            box-shadow: 0 0 6px rgba(46, 125, 50, 0.4);
+            box-shadow: 0 0 4px rgba(46, 125, 50, 0.3);
             outline: none;
         }
 
     .btn-primary {
         background-color: #2e7d32;
         border: none;
-        border-radius: 10px;
-        padding: 10px;
-        font-size: 16px;
+        border-radius: 8px;
+        padding: 8px;
+        font-size: 14px;
         font-weight: 500;
         width: 100%;
         transition: 0.3s;
+        color: white;
+        margin-top: 8px;
     }
 
         .btn-primary:hover {
@@ -69,46 +131,77 @@
     .text-danger {
         color: #d32f2f;
         font-weight: 500;
+        font-size: 12px;
     }
 
-    .form-group {
-        margin-bottom: 18px;
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .visitor-container {
+            flex-direction: column;
+            width: 90%;
+            height: auto;
+        }
+
+        .visitor-left {
+            width: 100%;
+            border-radius: 0;
+        }
+
+        .visitor-right {
+            padding: 20px;
+        }
     }
 </style>
 
-<h2>Visitor Information Form</h2>
 
-<form method="post" class="visitor-form">
-    <div class="form-group">
-        <label asp-for="Visitor.FullName">Full Name</label>
-        <input asp-for="Visitor.FullName" class="form-control" placeholder="Enter your full name" />
-        <span asp-validation-for="Visitor.FullName" class="text-danger"></span>
+
+<div class="visitor-wrapper">
+    <div class="visitor-container">
+        <!-- LEFT PANEL -->
+        <div class="visitor-left">
+            <img src="~/image/753077-removebg-preview.png" alt="CDM Logo" />
+            <h2>CDM Attendance System</h2>
+            <p>Welcome Visitor! Please fill out the form to log your visit.</p>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="visitor-right">
+            <h3>Visitor Information Form</h3>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="Visitor.FullName">Full Name</label>
+                    <input asp-for="Visitor.FullName" class="form-control" placeholder="Enter your full name" />
+                    <span asp-validation-for="Visitor.FullName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Visitor.VisitDate">Date</label>
+                    <input asp-for="Visitor.VisitDate" class="form-control" type="date" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Visitor.Office">Office to Visit</label>
+                    <select asp-for="Visitor.Office" class="form-select">
+                        <option value="">-- Select Office --</option>
+                        <option value="Registrar's Office">Registrar's Office</option>
+                        <option value="Guidance Office">Guidance Office</option>
+                        <option value="Office of Student Affairs">Office of Student Affairs</option>
+                    </select>
+                    <span asp-validation-for="Visitor.Office" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Visitor.Purpose">Purpose</label>
+                    <textarea asp-for="Visitor.Purpose" class="form-control" rows="2" placeholder="Enter your purpose of visit"></textarea>
+                    <span asp-validation-for="Visitor.Purpose" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn-primary">Submit</button>
+            </form>
+        </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="Visitor.VisitDate">Date</label>
-        <input asp-for="Visitor.VisitDate" class="form-control" type="date" readonly />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Visitor.Office">Office to Visit</label>
-        <select asp-for="Visitor.Office" class="form-select">
-            <option value="">-- Select Office --</option>
-            <option value="Registrar's Office">Registrar's Office</option>
-            <option value="Guidance Office">Guidance Office</option>
-            <option value="Office of Student Affairs">Office of Student Affairs</option>
-        </select>
-        <span asp-validation-for="Visitor.Office" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Visitor.Purpose">Purpose</label>
-        <textarea asp-for="Visitor.Purpose" class="form-control" rows="3" placeholder="Enter your purpose of visit"></textarea>
-        <span asp-validation-for="Visitor.Purpose" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
